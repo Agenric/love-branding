@@ -4,7 +4,7 @@ node_js:
 
 branches:
   only:
-    - learn
+    - master
 
 before_install:
   - npm install npm@latest -g
