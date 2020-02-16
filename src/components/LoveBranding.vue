@@ -26,7 +26,7 @@ export default {
   methods: {
     init: function() {
       var interval =
-        new Date().getTime() - new Date("2019-06-10 20:59:00").getTime();
+        new Date().getTime() - new Date("2019/06/10 20:59:00").getTime();
       this.days_old = Math.floor(interval / (24 * 3600 * 1000));
 
       interval = interval % (24 * 3600 * 1000);
