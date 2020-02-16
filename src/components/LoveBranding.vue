@@ -23,18 +23,18 @@ export default {
   },
   methods: {
     init: function() {
-      var meet = new Date("2019-06-10 20:59:00");
-      var now = new Date();
-      var date_diff = now.getTime() - meet.getTime(); //时间差的毫秒数
-      this.days_old = Math.floor(date_diff / (24 * 3600 * 1000)); //计算出相差天数
-      var leave1 = date_diff % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
-      this.hours_old = Math.floor(leave1 / (3600 * 1000)); //计算出小时数
-      //计算相差分钟数
-      var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
-      this.minutes_old = Math.floor(leave2 / (60 * 1000)); //计算相差分钟数
-      //计算相差秒数
-      var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
-      this.seconds_old = Math.round(leave3 / 1000);
+      var interval = Date().getTime() - Date("2019-06-10 20:59:00").getTime();
+      this.days_old = Math.floor(interval / (24 * 3600 * 1000));
+
+      interval = interval % (24 * 3600 * 1000);
+      this.hours_old = Math.floor(interval / (3600 * 1000));
+
+      interval = interval % (3600 * 1000);
+      this.minutes_old = Math.floor(interval / (60 * 1000));
+
+      interval = interval % (60 * 1000);
+      this.seconds_old = Math.round(interval / 1000);
+
       this.timer = setInterval(this.loopSecond, 1000);
     },
     loopSecond: function() {
