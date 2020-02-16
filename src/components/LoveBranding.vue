@@ -1,7 +1,9 @@
 <template>
   <div class="time">
     <h2>
-      {{ days_old }}天，{{ hours_old }}小时，{{ minutes_old }}分钟，{{ seconds_old }}秒
+      {{ days_old }}天，{{ hours_old }}小时，{{ minutes_old }}分钟，{{
+        seconds_old
+      }}秒
     </h2>
   </div>
 </template>
@@ -23,7 +25,8 @@ export default {
   },
   methods: {
     init: function() {
-      var interval = Date().getTime() - Date("2019-06-10 20:59:00").getTime();
+      var interval =
+        new Date().getTime() - new Date("2019-06-10 20:59:00").getTime();
       this.days_old = Math.floor(interval / (24 * 3600 * 1000));
 
       interval = interval % (24 * 3600 * 1000);
