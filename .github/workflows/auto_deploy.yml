@@ -31,5 +31,5 @@ jobs:
           git config user.email "AgenricWon@gmail.com"
           git add .
           git commit -m "Auto deploy by workflow."
-          git push "https:\/\/${{ secrets.GITHUB_TOKEN }}@github.com/Agenric/love-branding.git" master:master --force
+          git push "https://${{ secrets.PRIVATE_TOKEN }}@github.com/Agenric/love-branding.git" master:master --force
         working-directory: ../www
