@@ -1,0 +1,38 @@
+name: "Auto deploy"
+
+on:
+  push:
+    branches: [source]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Copy files
+        run: |
+          /bin/cp -rf dist ../www
+          /bin/cp -rf CNAME ../www/CNAME
+          cd ../www
+      - name: Deploy
+        run: |
+          git init
+          git config user.name "Github-CI"
+          git config user.email "AgenricWon@gmail.com"
+          git add .
+          git commit -m "Auto deploy by workflow."
+          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/Agenric/love-branding.git" master:master --force
