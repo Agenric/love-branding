@@ -8,17 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 11.13.0
       - name: Install
         run: npm install
       - name: Build
@@ -36,3 +32,4 @@ jobs:
           git add .
           git commit -m "Auto deploy by workflow."
           git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/Agenric/love-branding.git" master:master --force
+        working-directory: ../www
